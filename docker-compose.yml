@@ -41,7 +41,6 @@ services:
             MYSQL_ALLOW_EMPTY_PASSWORD: 1
         volumes:
             - 'tbitencourt-dbdata:/var/lib/mysql'
-            - './docker/mysql/:/docker-entrypoint-initdb.d/'
         networks:
             - app-network
         healthcheck:
