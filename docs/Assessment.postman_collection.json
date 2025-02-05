@@ -1,0 +1,181 @@
+{
+	"info": {
+		"_postman_id": "97f2ce57-7c1f-4047-84e6-f46d6b80baaf",
+		"name": "Assessment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37773197",
+		"_collection_link": "https://easycode-7744.postman.co/workspace/Easycode-Workspace~fafecc5e-fa80-4d11-ae9d-2d2098674bf7/collection/37773197-97f2ce57-7c1f-4047-84e6-f46d6b80baaf?action=share&source=collection_link&creator=37773197"
+	},
+	"item": [
+		{
+			"name": "Bank",
+			"item": [
+				{
+					"name": "Hello World!",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://assessment-laravel-bank.test/api/v1/",
+							"protocol": "http",
+							"host": [
+								"assessment-laravel-bank",
+								"test"
+							],
+							"path": [
+								"api",
+								"v1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Account Store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.api+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "numero_conta",
+									"value": "234",
+									"type": "text"
+								},
+								{
+									"key": "saldo",
+									"value": "180.37",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://assessment-laravel-bank.test/api/v1/conta",
+							"protocol": "http",
+							"host": [
+								"assessment-laravel-bank",
+								"test"
+							],
+							"path": [
+								"api",
+								"v1",
+								"conta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Transaction Store",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "forma_pagamento",
+									"value": "D",
+									"type": "text"
+								},
+								{
+									"key": "numero_conta",
+									"value": "234",
+									"type": "text"
+								},
+								{
+									"key": "valor",
+									"value": "10",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://assessment-laravel-bank.test/api/v1/transacao",
+							"protocol": "http",
+							"host": [
+								"assessment-laravel-bank",
+								"test"
+							],
+							"path": [
+								"api",
+								"v1",
+								"transacao"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Account Show",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://assessment-laravel-bank.test/api/v1/conta?numero_conta=234",
+							"protocol": "http",
+							"host": [
+								"assessment-laravel-bank",
+								"test"
+							],
+							"path": [
+								"api",
+								"v1",
+								"conta"
+							],
+							"query": [
+								{
+									"key": "numero_conta",
+									"value": "234"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
