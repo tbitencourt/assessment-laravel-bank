@@ -152,7 +152,6 @@ test('if value is higher then account balance', function () {
     $response = $this->postJson(route('api.v1.transactions.store'), $input);
 
     // Assert...
-    /** @noinspection SpellCheckingInspection */
     $response->assertNotFound()->assertExactJson([
         'message' => __('exceptions.insufficient_funds_message'),
     ]);
