@@ -5,7 +5,7 @@ declare(strict_types=1);
 use App\Models\Account;
 use App\Models\Transaction;
 
-it('can create a transaction', function () {
+it('can create a debit transaction', function () {
     // Arrange...
     $account = Account::factory()->create(['number' => 234, 'balance' => 18037]);
     /** @noinspection SpellCheckingInspection */
@@ -33,6 +33,68 @@ it('can create a transaction', function () {
         ->and($transaction->account->number)->toBe(234)
         ->and($transaction->account->balance)->toBe(17007)
         ->and($transaction->payment_type->value)->toBe('D')
+        ->and($transaction->value)->toBe(1000);
+});
+
+it('can create a credit transaction', function () {
+    // Arrange...
+    $account = Account::factory()->create(['number' => 234, 'balance' => 18037]);
+    /** @noinspection SpellCheckingInspection */
+    $input = [
+        'forma_pagamento' => 'C',
+        'numero_conta' => $account->number,
+        'valor' => 10,
+    ];
+
+    // Act...
+    $response = $this->postJson(route('api.v1.transactions.store'), $input);
+
+    // Assert...
+    $transaction = Transaction::query()->first();
+
+    /** @noinspection SpellCheckingInspection */
+    $response->assertStatus(201)->assertExactJson([
+        'numero_conta' => $input['numero_conta'],
+        'saldo' => 169.87,
+    ]);
+
+    /** @noinspection SpellCheckingInspection */
+    expect(Transaction::query()->count())->toBe(1)
+        ->and($transaction)->toBeInstanceOf(Transaction::class)
+        ->and($transaction->account->number)->toBe(234)
+        ->and($transaction->account->balance)->toBe(16987)
+        ->and($transaction->payment_type->value)->toBe('C')
+        ->and($transaction->value)->toBe(1000);
+});
+
+it('can create a pix transaction', function () {
+    // Arrange...
+    $account = Account::factory()->create(['number' => 234, 'balance' => 18037]);
+    /** @noinspection SpellCheckingInspection */
+    $input = [
+        'forma_pagamento' => 'P',
+        'numero_conta' => $account->number,
+        'valor' => 10,
+    ];
+
+    // Act...
+    $response = $this->postJson(route('api.v1.transactions.store'), $input);
+
+    // Assert...
+    $transaction = Transaction::query()->first();
+
+    /** @noinspection SpellCheckingInspection */
+    $response->assertStatus(201)->assertExactJson([
+        'numero_conta' => $input['numero_conta'],
+        'saldo' => 170.37,
+    ]);
+
+    /** @noinspection SpellCheckingInspection */
+    expect(Transaction::query()->count())->toBe(1)
+        ->and($transaction)->toBeInstanceOf(Transaction::class)
+        ->and($transaction->account->number)->toBe(234)
+        ->and($transaction->account->balance)->toBe(17037)
+        ->and($transaction->payment_type->value)->toBe('P')
         ->and($transaction->value)->toBe(1000);
 });
 
