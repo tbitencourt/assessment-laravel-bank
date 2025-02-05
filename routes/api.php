@@ -15,9 +15,11 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('/', function () {
         return ['message' => 'Welcome to the Assessment Laravel Bank API.'];
     })->name('api.v1.index');
-    Route::apiResource('conta', AccountController::class)->only(['store'])
-        ->names('api.v1.accounts');
+    Route::post('/conta', [AccountController::class, 'store'])
+        ->name('api.v1.accounts.store');
+    Route::get('/conta', [AccountController::class, 'show'])
+        ->name('api.v1.accounts.show');
     /** @noinspection SpellCheckingInspection */
-    Route::apiResource('transacao', TransactionController::class)->only(['store'])
-        ->names('api.v1.transactions');
+    Route::post('/transacao', [TransactionController::class, 'store'])
+        ->name('api.v1.transactions.store');
 });
