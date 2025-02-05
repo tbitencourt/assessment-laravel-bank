@@ -7,10 +7,11 @@ namespace App\Models;
 use Database\Factories\AccountFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * @property int $number
- * @property int $balance
+ * @property-read int $number
+ * @property-read int $balance
  */
 final class Account extends Model
 {
@@ -21,4 +22,12 @@ final class Account extends Model
         'number',
         'balance',
     ];
+
+    /**
+     * @return HasMany<Transaction, $this>
+     */
+    public function transactions(): HasMany
+    {
+        return $this->hasMany(Transaction::class);
+    }
 }

@@ -19,7 +19,7 @@ final class CreateNewAccountRequest extends FormRequest
         /** @noinspection SpellCheckingInspection */
         return [
             'numero_conta' => 'required|numeric|unique:accounts,number',
-            'saldo' => 'required|numeric|decimal:2|min:0.00',
+            'saldo' => 'required|numeric|decimal:0,2|min:0.00',
         ];
     }
 }
