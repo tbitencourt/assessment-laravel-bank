@@ -1,27 +1,33 @@
 {
-    "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/laravel",
+    "name": "tbitencourt/assessment-laravel-bank",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
+    "description": "Pre-hire Developer Coding Project.",
     "keywords": [
+        "assessment",
+        "php",
         "laravel",
-        "framework"
+        "bank",
+        "api"
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.2",
-        "laravel/framework": "^11.31",
-        "laravel/tinker": "^2.9"
+        "php": "^8.4",
+        "laravel/framework": "^11.41.3",
+        "laravel/sanctum": "^4.0.8",
+        "laravel/tinker": "^2.10.1"
     },
     "require-dev": {
-        "fakerphp/faker": "^1.23",
-        "laravel/pail": "^1.1",
-        "laravel/pint": "^1.13",
-        "laravel/sail": "^1.26",
-        "mockery/mockery": "^1.6",
-        "nunomaduro/collision": "^8.1",
-        "pestphp/pest": "^3.7",
-        "pestphp/pest-plugin-laravel": "^3.1"
+        "fakerphp/faker": "^1.24.1",
+        "larastan/larastan": "^3.0.2",
+        "laravel/pail": "^1.2.2",
+        "laravel/pint": "^1.20",
+        "laravel/sail": "^1.41",
+        "mockery/mockery": "^1.6.12",
+        "nunomaduro/collision": "^8.6.1",
+        "pestphp/pest": "^3.7.4",
+        "pestphp/pest-plugin-laravel": "^3.1",
+        "pestphp/pest-plugin-type-coverage": "^3.2.3",
+        "rector/rector": "^2.0.7"
     },
     "autoload": {
         "psr-4": {
@@ -54,6 +60,20 @@
         "dev": [
             "Composer\\Config::disableProcessTimeout",
             "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"npm run dev\" --names=server,queue,logs,vite"
+        ],
+        "lint": "pint",
+        "refactor": "rector",
+        "test:type-coverage": "pest --type-coverage --min=100",
+        "test:lint": "pint --test",
+        "test:unit": "pest --parallel --coverage --exactly=100",
+        "test:types": "phpstan",
+        "test:refactor": "rector --dry-run",
+        "test": [
+            "@test:type-coverage",
+            "@test:unit",
+            "@test:lint",
+            "@test:types",
+            "@test:refactor"
         ]
     },
     "extra": {
