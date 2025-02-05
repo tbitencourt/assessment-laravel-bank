@@ -17,6 +17,8 @@ return [
     */
 
     'decimal' => 'O campo :attribute deve ter :decimal casas decimais.',
+    'enum' => 'O :attribute selecionado é inválido.',
+    'exists' => 'O :attribute selecionado é inválido.',
     'integer' => 'O campo :attribute deve ser inteiro.',
     'max' => [
         'array' => 'The :attribute field must not have more than :max items.',
@@ -74,6 +76,8 @@ return [
     'attributes' => [
         'numero_conta' => 'número da conta',
         'saldo' => 'número da conta',
+        'forma_pagamento' => 'forma de pagamento',
+        'valor' => 'valor',
     ],
 
 ];

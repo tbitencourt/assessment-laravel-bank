@@ -21,7 +21,7 @@ final class AccountFactory extends Factory
     {
         return [
             'number' => fake()->unique()->randomNumber(8),
-            'balance' => (fake()->randomFloat(2, 0, 10000) * 100),
+            'balance' => (int) (fake()->randomFloat(2, 0, 10000) * 100),
         ];
     }
 }
